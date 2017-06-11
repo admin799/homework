@@ -1,0 +1,639 @@
+/*************************创建函数*************************/
+一、声明变量操作符
+
+	var 
+	
+	let : 把作用域规定范围
+	
+	
+二、回顾
+
+new Array();  数组对象
+new Date();   日期对象
+new String(); 字符串对象
+new RegExp(); 正则对象
+
+
+如果对象没有这个方法或者属性  ===>undefined
+所有的对象都有一个内置的方法为：toString()
+
+
+
+三、创建对象
+
+1>字面量
+	{}
+	格式:
+		{
+			"键名":数组｜字符串|数字...,
+			"键       名":数组｜字符串|数字...,
+			"键-名":数组｜字符串|数字...,
+			"关键字(for、if)":数组｜字符串|数字...
+		}	
+		
+	获取值方式:
+		对象.属性
+		对象[属性]
+		
+	*************
+	关键字(for、if)：2中获取方式都OK,不建议采取第一种方式(obj.for....)
+2>
+	new Object()  ====>空对象
+	
+	
+	
+	***1、使用Object.create方法从原型（prototype）创建对象
+	***2、除了null以外，所有对象都和另外一个对象关联（继承自另一个对象）
+	 
+	
+3>
+	Object.create()
+	
+	
+	Object.create(Object.prototype);//数组的原型
+
+
+
+*************************
+4>
+	class ===>类  : es6
+
+
+
+
+
+我去八维研修学院    传媒学院      找张三
+
+	
+	
+
+
+
+*******************
+return 在什么地方用
+
+1》获取某个值在时候，必须要return
+2》设置的时候  可以不return 可以return
+
+
+
+
+
+******************
+
+对象说明：
+创建对象形式:
+	{}、new Object.. ：为空对象
+	但是空对象内置了toString()方式
+
+/***************************序列化***************************/
+一、对象属性添加和删除
+	
+	1>添加属性(例如):  obj["p"+i] = i;
+	
+	2>删除属性 （例如）： delete obj.p2;
+
+二、检测属性是否存在
+
+	
+	1>in===>返回结果：true  false
+		语法：
+			属性名称 in 对象   
+		1>系统内置
+		2>自己创建的属性
+		
+	2>hasOwnProperty:
+		语法：对象.hasOwnProperty(属性名称)
+		1>自己创建的属性
+		
+	3>propertyIsEnumerable
+		
+		语法：对象.propertyIsEnumerable(属性名称)
+		
+		1>自己创建的属性
+		2>必须是可枚举的
+			可以 for in 出来的属性都是可枚举的
+		
+		
+	4>判断语句   if(obj.name=="张三")
+
+
+
+**************hasOwnProperty、propertyIsEnumerable区别***********
+
+hasOwnProperty只要是自己创建的不管什么条件，都返回true
+propertyIsEnumerable能for in遍历出来的返回true
+
+三、只读和只写
+
+
+	getter  ===>读
+	setter  ===>写
+	
+		
+	var obj = {
+		
+		get 属性名称(){
+			读
+		}
+		
+		set 属性名称(){
+			写
+		}
+		
+	}
+	
+四、序列化对象
+
+	var obj = {}  ====》把对象转换为字符串
+		
+			
+		语法格式：
+			JSON.stringify(obj);
+		
+	
+	'{name:"zhangsan"}'  ====》把字符串转换为对象
+	
+		
+		语法格式：
+			JSON.parse(obj);
+
+/****************面向对象和构造函数**********************/
+1>面向对象是什么？
+
+	我也不知道你是怎么写的这个程序，但是呢，我能直接拿来用的，而且用的很爽
+
+2>面向对象应用场景
+
+	1》复用性特别高
+
+小明：
+	
+	有的》变量》属性
+		
+		name = "xxxx" 			有名字
+		
+	能的》函数》方法
+	
+		game = function(){		  能打游戏	
+			xxxx
+		}
+
+
+
+1>构造函数模式 
+	
+	this===》
+		属性:this.name
+		方法:this.run = function(){}
+		
+	格式:
+		注意：构造名称，首字母大写
+	
+	function Box(){
+		this.name = name;
+	}
+
+2>工厂模式
+	
+	原材料 ===>加工====》出厂
+
+3>原型模式(prototype)
+
+	1>隐式	__proto__
+	
+	2>显式	prototype
+		
+	****prototype特性：共享
+
+
+	constructor ===>返回就是构造函数
+
+4>组合使用构造器和原型模式   **************************
+
+
+5>动态原型模式
+
+
+******如果要实现连缀写法，都要返回当前对象(this)
+
+
+/******************class创建对象***********************/
+知识点：
+	
+	************
+	
+		函数有显式原型      prototype
+		对象有隐式原型     __proto__
+
+
+	4》使用class类创建对象
+	
+		
+	class 名称{
+		
+		constructor(name,age){    ====》构造函数
+			this.name = name;
+			this.age = age;
+		}
+		
+		css(){      ====》原型
+			
+		}
+		
+	}
+	
+	
+	document.querySelectorAll()
+	
+		有length 就有下标[]
+		
+		+  同级下一个兄弟节点
+		~  同级下所有兄弟节点
+		
+		>  直属子元素
+		(空格 ) 选取的所有内部元素
+		
+		#  ID
+		.  Class
+		
+		
+	document.querySelector()
+	
+	
+	*******兼容IE(IE8以下)******
+	vue
+	angularjs
+
+/**********************继承**************************/
+*****补充start******
+
+	隐式原型：__proto__   ===>对象      
+	
+	显式原型：prototype   ===>函数
+	
+	***对象.__proto__  === 函数.prototype   :::返回结果为true
+
+ 
+*****补充end******
+
+一、原型链 (属性和方法都是共享的、一个改变，全都改变)
+
+
+	代码如下：
+		function 父(){}
+		function 子(){}
+		子.prototype=new 父;
+
+二、借用构造函数(不共享，单独的)
+	
+	代码如下：
+		function 父(){}
+		function 子(){
+			父.call(this)   ===>子继承父
+		}
+		
+		
+	*************以上的原型链  和  借用构造函数**********区别如下:
+	
+	1>原型链 	           ：每个实例都共用一个地址
+	2>借用构造函数     ：每个实例都不共用一个地址
+
+	
+
+三、组合继承(该共享、不该共享的不共享)
+
+	****采取原型链和借用构造函数的优势***组成一个新的模式为：组合继承
+	
+		代码如下：
+		
+			function 父(){}
+			function 子(){
+				父.call(this)
+			}
+			子.prototype=new 父;
+		
+四、箭头函数
+
+	es4中的函数格式：
+		
+		function(){
+			
+		}
+	
+	es6中的函数格式：
+	
+		()=>{
+			
+			
+		}
+
+/*********************原型式_寄生组合式************************/
+一、原型式继承 (object.create)
+	
+	object.create(Array.prototype) ===>es5
+	
+	es4 ===>原型式继承
+	
+	****new 中转函数
+
+二、寄生式继承  (原型式+工厂模式)
+
+
+	****new 工厂模式
+
+
+三、寄生组合式继承 	********用的最多的*******优点最好的
+
+
+优点结合：
+
+	借用构造函数  ====》不是一个prototype    ???
+	原型链	 ====》所有的属性和方法都是共享的,  改变一个，其他的都改变
+
+面向对象封装tab切换 ：
+	
+		1》明确功能模块 
+			1>获取元素功能 
+			2>事件模块功能
+			3>切换模块功能
+		
+		2》this指向问题
+			
+			1>构造函数 this指向
+			2>方法this指向
+		
+		3》明确代码存在问题
+		
+			1>闭包问题
+			2>值存在与否的问题
+			
+			
+
+
+/---------------ES6和indexof--------------------/
+
+1》new Set    : EcmaScript 6中的
+
+	***去重
+
+
+2》indexof 、lastIndexof
+
+:全等
+
+arr.indexOf(目标位置); 
+arr.indexOf(目标位置,起始位置); 
+
+arr.lastIndexof(目标位置);
+arr.lastIndexof(目标位置,起始位置); 
+ 
+EcmaScript 4  ===>字符串
+EcmaScript 5  ===>数组
+
+
+
+3》forEach方法
+
+
+数组.forEach(function(item,index,array){})
+
+
+4》filter方法  ===》筛选
+
+数组.filter(function(item,index,array){})
+
+
+5》map方法:返回新数组
+
+	数组.map(function(item,index,array){
+		
+		return item;
+	})
+
+
+6》every()和some()  ====》近似于  : &&   ||
+
+
+	****返回结果true 、false(布尔类型)
+
+
+7》reduce和reduceRight  : 递归
+
+	数组.reduce(function(之前的,当前的,索引,数组){
+	
+})
+	
+
+*****使用率最高的*********
+1、forEach方法
+2、reduce方法
+3、filter方法
+
+/-------------------JSON------------------------/
+<!--JSON.stringify()
+JSON.parse()
+-->
+	
+1》JSON : 
+
+	其他语言都 有:php .net java js
+	
+	json不是js独有的
+	
+	
+2》应用场景
+
+	数据的同步
+
+3》文件结尾
+
+	php
+	java
+	.net
+		.json 
+	
+	
+	.js 		===>本地文件
+	
+	.js和.json   虽然代码一样，都是效果不同
+		***.json需要后台环境
+		
+4》json存储值
+
+	1、对象
+	2、数组
+	3、简单值 
+	
+		***注意:不能存储undefined
+
+window对象下的    
+
+	navigator对象
+	
+	appName(浏览器名称[有问题])
+
+
+1>判断浏览器内核（引擎）  ===>检测浏览器
+
+	
+	navigator.userAgent
+	
+	
+3>浏览器行为
+
+能力检测 ===>功能
+ 
+怪癖检测 ===>bug      x
+
+用户代理检测(navigator.userAgent)
+
+/-----------------AJAX-------------------/
+ajax优点
+	
+	1》局部刷新
+	2》减轻服务器带宽
+	
+ajax缺点
+	
+	1》破坏浏览器（前进、后退按钮）
+	2》搜索引擎支持程度不够
+
+
+
+一、ajax核心对象:new XMLHttpRequest()
+	
+	****IE6不兼容
+
+
+	2》ajax对象.open(打开方式[get|post],打开文件,是否异步false：同步|true:异步)
+	
+		1>get  ==》路劲传值
+			
+			http://www.baidu.com?userName="123456"&pwd="00000"
+			
+		2>post ==》表单传值
+		
+			form
+	3》发送请求:ajax对象.send();
+	
+	4》打印文本内容：ajax对象.responseText
+	
+	5》异步
+		1》ajax对象.open(打开方式[get|post],打开文件,true:异步)
+		2》
+		alert(xhr.status)  
+		alert(xhr.readyState);
+		
+		
+
+***********************
+如果要用json文件,并且要用ajax    必须要在服务端运行
+
+
+http://localhost:8888/===》www目录
+
+
+***********************
+如何让自己的电脑成为服务器，让别人访问
+
+1》知道我的网络的ip
+
+	1>cmd：ipconfig
+	2>ipv4为自己的ip   : 172.23.71.69
+	
+2》共享ip让别人能访问
+	
+	1>进入c盘
+	2>windows目录
+	3>system32目录
+	4>drivers目录
+	5>etc目录
+	6>hosts文件打开
+	
+
+
+
+/-------------------JSONP---------------------/
+一、jsonp
+
+	
+	同源策略：属于一个IP地址，或者一个服务器
+		
+		*****浏览器不支持同源
+		
+		http://localhost:8888/jsonp/index.html
+		
+		http://127.0.0.1:8888/jsonp/index.html
+		
+		http://172.23.71.11:8888/jsonp/index.html
+	
+	jsonp：（跨域） :  不同服务器连接
+	
+	
+二、js实现跨域
+
+	1>
+		<script src="跨域连接.js"> </script>
+
+	2>
+		必须是js文件
+	
+	
+三、拼接
+
+	es6中的拼接     :  ``   变量｜函数  ===> ${}
+	
+	
+
+四、字符串方法
+
+	es6 ===》
+	
+		repeat
+
+五、作用域:scope、提升
+
+
+	js  ===》 没有块级作用域
+	提升    ===》函数、变量
+		***函数的提升 高于变量的提升
+
+	函数：
+		一个一个提升
+		变量提升：就是定义  没有 赋值(undefined)
+
+
+/-------------------this指向--------------------/
+一、this指向
+
+	1》默认绑定（指向）
+		函数中的this 执行window
+		
+	2》隐式绑定（指向）
+	3》显式绑定（指向）
+		
+		call
+		apply
+		
+		
+		bind:返回函数
+		
+	4》new绑定（指向）
+		
+		this指向于new的实例
+		****不会指向函数
+
+二、3种绑定情况优先级
+
+	1》隐式绑定和显式绑定    : 优先级谁高
+		
+
+		1》new绑定
+		2》显式绑定
+		3》隐式绑定
+		
+
+
+
+
