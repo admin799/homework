@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="box">
+    <p class="box-p">
+    	<input type="checkbox" id="ch">
+    	<label for="ch" class="lab"><span></span></label>
+    	<span>只看免预约</span>
+    </p>
+    <p class="box-p">
+    	<input type="checkbox" id="chs">
+    	<label for="chs" class="lab"><span></span></label>
+    	<span>节假日可用</span>
+    </p>
+    <div class="main">
+        <p>用餐人数</p>
+        <div class="radio">
+            <input type="radio" id="rad" name="radio"><label for="rad">不限</label>
+            <input type="radio" id="rad1" name="radio"><label for="rad1">单人餐</label>
+            <input type="radio" id="rad2" name="radio"><label for="rad2">双人餐</label>
+            <input type="radio" id="rad3" name="radio"><label for="rad3">3-4人餐</label>
+            <input type="radio" id="rad4" name="radio"><label for="rad4">5~10人餐</label>
+            <input type="radio" id="rad5" name="radio"><label for="rad5">10人以上</label>
+            <input type="radio" id="rad6" name="radio"><label for="rad6">代金券</label>
+            <input type="radio" id="rad7" name="radio"><label for="rad7">其他</label>
+        </div>
+    </div>
+    <button class="reset">重置</button><button class="save">保存</button>
+</div>
+<script>
+    /*var reset = document.querySelector('.reset');
+    var p = document.querySelectorAll('.box-p');
+    var radio = document.querySelector('.radio').querySelectorAll('input')[0];
+    var int=document.querySelectorAll('input');
+    reset.onclick=function(){
+        for(let n of int){
+            n.checked=false;
+        }
+        radio.checked=true;
+    }
+    */
+    class Reset{
+        constructor(options){
+            this.reset = document.querySelector(options.reset)
+            this.int = document.querySelectorAll(options.int);
+            this.infinte = document.querySelector(options.infinte);
+            this.save = document.querySelector(options.save)
+            this.butClickEvent();
+            this.saveClickEvent();
+        }
+        butClickEvent(){
+            this.reset.addEventListener("click",() => {
+                for(let n of this.int){
+                    n.checked = false
+                }
+                this.infinte.checked = true;
+            })
+        }
+        saveClickEvent(){
+            let obj = {};
+            let checkbox = [];
+            let radio = "";
+            this.save.addEventListener("click",() => {
+            	let arr = [];
+                for(let i of this.int){
+                    let type = i.getAttribute("type");
+                    if(i.checked == true && type == "checkbox" ){
+                        let txt = i.nextElementSibling.nextElementSibling.innerHTML;
+                        arr.push(txt);
+                    }
+                    if(i.checked == true && type == "radio"){
+                        str = i.nextElementSibling.innerHTML.trim();
+                    }
+                }
+                localStorage.clear();
+                localStorage.setItem("checkbox",checkbox);
+                localStorage.setItem("radio",radio);
+            })
+        }
+    }
+    var obj = new Reset({
+        reset:".reset",
+        infinte:"#rad",
+        int:"input",
+        save:".save"
+    })
+</script>
+</body>
+</html>
